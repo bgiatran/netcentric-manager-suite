@@ -1,0 +1,76 @@
+/** Title: HTTP Library Project
+ *  Class: CSC3221 Group VI
+ *  Purpose:  Stylesheet for the CoreHTTP Client Tester UI.
+ *  Provides responsive layout, form styling, button design, and JSON response formatting
+ *  using Flexbox for a clean two-column layout (request input and response output).
+ *  Authors: Bria Tran, Eva Espindola, Ryan Fecarotta
+ *  Date: May 16th, 2025
+ */
+
+/* Apply flexbox to center everything in the viewport */
+body {
+    font-family: sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Viewport height */
+    display: flex;
+    justify-content: center; /* Horizontal center */
+    align-items: center; /* Vertical center */
+}
+
+/* Layout wrapper containing form and result containers side-by-side */
+.wrapper {
+    display: flex;
+    gap: 30px; /* Space between form and result panels */
+}
+
+/* Shared styles for both panels */
+.form-container,
+.result-container {
+    background: white;
+    width: 500px;
+    height: 600px;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Soft drop shadow */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style shared by inputs, selects, and textareas */
+textarea, input, select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px;
+    box-sizing: border-box;
+}
+
+/* Style for the send request button */
+button {
+    padding: 10px 15px;
+    background: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Remove default top margin on titles */
+.result-container h2,
+.form-container h1 {
+    margin-top: 0;
+}
+
+/* Response display box for showing JSON or text output */
+pre#result {
+    flex: 1;
+    background: #eee;
+    padding: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    white-space: pre-wrap; /* Preserve formatting with wrapping */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

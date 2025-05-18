@@ -1,0 +1,61 @@
+<!-- Title: HTTP Library Project
+     Class: CSC3221 Group VI
+     Purpose: This is the main user interface for the CoreHTTP Client Tester.
+     It allows users to interactively send HTTP requests (GET, POST, PUT, DELETE, PATCH)
+     to any given API endpoint and view the formatted server response in real-time.
+     Authors: Bria Tran, Eva Espindola, Ryan Fecarotta
+     Date: May 16th, 2025
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CoreHTTP Tester</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Form container: collects user input for HTTP request configuration -->
+        <div class="form-container">
+            <h1>HTTP Client Tester</h1>
+
+            <!-- HTTP method selection (e.g., GET, POST) -->
+            <label for="method">Method:</label>
+            <select id="method">
+                <option>GET</option>
+                <option>POST</option>
+                <option>PUT</option>
+                <option>DELETE</option>
+                <option>PATCH</option>
+            </select>
+
+            <!-- Endpoint input (e.g., "/users") -->
+            <label for="endpoint">Endpoint (e.g., /users):</label>
+            <input type="text" id="endpoint" placeholder="/users">
+
+            <!-- Optional query parameters (JSON format) -->
+            <label for="query">Query Params (JSON):</label>
+            <textarea id="query" placeholder='{"username": "Brian"}'></textarea>
+
+            <!-- Optional request body (JSON format, used in POST/PUT/PATCH) -->
+            <label for="data">Request Body (JSON):</label>
+            <textarea id="data" placeholder='{"name": "New User"}'></textarea>
+
+            <!-- Submit button to send the HTTP request -->
+            <button id="sendRequest">Send Request</button>
+        </div>
+
+        <!-- Response container: displays the output returned from the API -->
+        <div class="result-container">
+            <h2>Result:</h2>
+            <pre id="result">{}</pre>
+        </div>
+    </div>
+
+    <!-- Load CoreHTTP library for API communication -->
+    <script src="mainHTTP.js"></script>
+    <!-- Load app logic (UI interaction + request handling) -->
+    <script src="app.js"></script>
+</body>
+</html>
