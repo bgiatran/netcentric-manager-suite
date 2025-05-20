@@ -1,4 +1,4 @@
-# HTTP Library + Tester UI
+# HTTP Library
 *Authors: Bria Tran, Eva Espindola, Ryan Fecarotta*
 
 ## Project Overview
