@@ -20,7 +20,7 @@
         <div class="form-container">
             <h1>HTTP Client Tester</h1>
 
-            <!-- HTTP method selection (e.g., GET, POST) -->
+            <!-- HTTP method selection -->
             <label for="method">Method:</label>
             <select id="method">
                 <option>GET</option>
@@ -30,20 +30,20 @@
                 <option>PATCH</option>
             </select>
 
-            <!-- Endpoint input (e.g., "/users") -->
-            <label for="endpoint">Endpoint (e.g., /users):</label>
+            <!-- Endpoint input -->
+            <label for="endpoint">Endpoint:</label>
             <input type="text" id="endpoint" placeholder="/users">
 
-            <!-- Optional query parameters (JSON format) -->
-            <label for="query">Query Params (JSON):</label>
+            <!-- Query parameters (JSON format) -->
+            <label for="query">Query Params:</label>
             <textarea id="query" placeholder='{"username": "Brian"}'></textarea>
 
-            <!-- Optional request body (JSON format, used in POST/PUT/PATCH) -->
-            <label for="data">Request Body (JSON):</label>
+            <!-- Request body JSON format -->
+            <label for="data">Request Body:</label>
             <textarea id="data" placeholder='{"name": "New User"}'></textarea>
 
-            <!-- Submit button to send the HTTP request -->
-            <button id="sendRequest">Send Request</button>
+            <!-- Submit button -->
+            <button id="request">Send Request</button>
         </div>
 
         <!-- Response container: displays the output returned from the API -->
@@ -53,9 +53,7 @@
         </div>
     </div>
 
-    <!-- Load CoreHTTP library for API communication -->
     <script src="mainHTTP.js"></script>
-    <!-- Load app logic (UI interaction + request handling) -->
     <script src="app.js"></script>
 </body>
 </html>

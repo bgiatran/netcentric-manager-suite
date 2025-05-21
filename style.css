@@ -7,22 +7,22 @@
  *  Date: May 16th, 2025
  */
 
-/* Apply flexbox to center everything in the viewport */
+/* Center everything in the viewport */
 body {
     font-family: sans-serif;
     background: #f4f4f4;
     margin: 0;
     padding: 0;
-    height: 100vh; /* Viewport height */
+    height: 100vh; 
     display: flex;
-    justify-content: center; /* Horizontal center */
-    align-items: center; /* Vertical center */
+    justify-content: center; 
+    align-items: center;
 }
 
-/* Layout wrapper containing form and result containers side-by-side */
+/* Layout wrapper containing form and result containers */
 .wrapper {
     display: flex;
-    gap: 30px; /* Space between form and result panels */
+    gap: 30px; 
 }
 
 /* Shared styles for both panels */
@@ -34,12 +34,22 @@ body {
     padding: 20px;
     box-sizing: border-box;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Soft drop shadow */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); 
     display: flex;
     flex-direction: column;
 }
 
-/* Style shared by inputs, selects, and textareas */
+.form-container:hover,
+.result-container:hover {
+    cursor: pointer;
+}
+
+body.default-cursor {
+    cursor: default;
+}
+
+
+/* Style of inputs, selects, and textareas */
 textarea, input, select {
     width: 100%;
     padding: 10px;
@@ -47,7 +57,7 @@ textarea, input, select {
     box-sizing: border-box;
 }
 
-/* Style for the send request button */
+/* Style for send request button */
 button {
     padding: 10px 15px;
     background: #007BFF;
@@ -63,14 +73,14 @@ button {
     margin-top: 0;
 }
 
-/* Response display box for showing JSON or text output */
+/* Response display box for showing output */
 pre#result {
     flex: 1;
     background: #eee;
     padding: 10px;
     overflow-y: auto;
     overflow-x: hidden;
-    white-space: pre-wrap; /* Preserve formatting with wrapping */
+    white-space: pre-wrap; 
     border: 1px solid #ccc;
     border-radius: 5px;
 }

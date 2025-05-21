@@ -12,18 +12,10 @@ class CoreHTTP {
     this.baseURL = baseURL;
   }
 
-  /**
-  * Generic HTTP request method used internally by all others.
-  * @param {string} method - HTTP method
-  * @param {string} endpoint - Relative URL (e.g., "/users")
-  * @param {Object|null} data - Request body (optional)
-  * @param {Object} queryParams - Query parameters (optional)
-  * @returns {Promise<Object|string>} - Parsed JSON or text
-  */
   async request(method, endpoint, data = null, queryParams = {}) {
       let url = this.baseURL + endpoint;
 
-    // Append query parameters if provided
+    // Append query parameters
     if (Object.keys(queryParams).length) {
       const query = new URLSearchParams(queryParams).toString();
       url += `?${query}`;
@@ -51,12 +43,12 @@ class CoreHTTP {
         ? await response.json()
         : await response.text();
     } catch (error) {
-      // Return error object for UI to handle/display
+      // Return error message to display
       return { error: error.message };
     }
   }
 
-  // Helper methods for standard HTTP verbs
+  // Helper methods for HTTP verbs
   get(endpoint, queryParams = {}) {
     return this.request("GET", endpoint, null, queryParams);
   }

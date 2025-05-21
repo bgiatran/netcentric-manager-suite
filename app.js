@@ -8,11 +8,11 @@
  *  Date: May 16th, 2025
  */
 
-// Initialize CoreHTTP with the remote API base URL
+// Remote API base URL
 const api = new CoreHTTP("https://jsonplaceholder.typicode.com");
 
 // Attach click event listener to the "Send Request" button
-document.getElementById("sendRequest").addEventListener("click", async () => {
+document.getElementById("request").addEventListener("click", async () => {
   const method = document.getElementById("method").value;
   const endpoint = document.getElementById("endpoint").value;
   const data = document.getElementById("data").value;
@@ -22,22 +22,39 @@ document.getElementById("sendRequest").addEventListener("click", async () => {
   let parsedData = {};
     let parsedQuery = {};
 
-  // Attempt to parse JSON input; show error if invalid
+  // Attempt to parse JSON input
   try {
     if (data.trim()) parsedData = JSON.parse(data);
     if (query.trim()) parsedQuery = JSON.parse(query);
   } catch (e) {
-    document.getElementById("result").textContent = "Invalid JSON in data or query";
+    document.getElementById("result").textContent = "Invalid JSON";
     return;
     }
 
-  // Attempt to send the request using the appropriate HTTP method
+  // Attempt to send the request using appropriate HTTP method
   try {
       const response = await api[method.toLowerCase()](endpoint, parsedData, parsedQuery);
-    // Pretty-print the response to the result panel
+    // Print response to result
     document.getElementById("result").textContent = JSON.stringify(response, null, 2);
   } catch (err) {
-    // Handle unexpected errors (e.g., network issues)
+    // Handle unexpected errors
     document.getElementById("result").textContent = "Error: " + err.message;
   }
 });
+
+// Change cursor style when hovering over form or result containers for fun
+const formContainer = document.querySelector('.form-container');
+const resultContainer = document.querySelector('.result-container');
+
+function setHoverCursor() {
+    document.body.classList.remove("default-cursor");
+}
+
+function setDefaultCursor() {
+    document.body.classList.add("default-cursor");
+}
+
+formContainer.addEventListener("mouseenter", setHoverCursor);
+formContainer.addEventListener("mouseleave", setDefaultCursor);
+resultContainer.addEventListener("mouseenter", setHoverCursor);
+resultContainer.addEventListener("mouseleave", setDefaultCursor);
