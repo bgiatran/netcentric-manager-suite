@@ -7,7 +7,7 @@
  *  Date: May 16th, 2025
  */
 
-class CoreHTTP {
+class MainHTTP {
   constructor(baseURL = "") {
     this.baseURL = baseURL;
   }
