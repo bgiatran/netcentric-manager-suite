@@ -9,7 +9,7 @@
  */
 
 // Remote API base URL
-const api = new CoreHTTP("https://jsonplaceholder.typicode.com");
+const api = new MainHTTP("https://jsonplaceholder.typicode.com");
 
 // Attach click event listener to the "Send Request" button
 document.getElementById("request").addEventListener("click", async () => {
