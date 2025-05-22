@@ -1,3 +1,4 @@
 # HTTP Library
 *Authors: Bria Tran, Eva Espindola, Ryan Fecarotta*
-Folder: mainhttp-lib/
+**Due Date:** Tuesday, May 20, 2025 – 11:59 PM  
+**Folder:** `mainhttp-lib/`  
