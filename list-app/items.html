@@ -20,11 +20,12 @@
         <div class="item-list-container">
             <h2>My Items</h2>
             <ul id="item-list"></ul>
+            <form action="/submit" method = "post">
+                <!-- Input field to add new items -->
+                <input type="text" id="new-item" name = "newitem" placeholder="Add new item"/>
             
-            <!-- Input field to add new items -->
-            <input type="text" id="new-item" placeholder="Add new item" />
-            
-            <button id="add-item-btn">Add Item</button>
+                <button id="add-item-btn">Add Item</button>
+            </form> 
             <div id="error-message" style="color: red;"></div>
         </div>
     </div>

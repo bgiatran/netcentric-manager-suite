@@ -1,0 +1,25 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Server to read and write for list-app",
+  "main": "items.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/briatran021094/HTTP_Library.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/briatran021094/HTTP_Library/issues"
+  },
+  "homepage": "https://github.com/briatran021094/HTTP_Library#readme",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "express": "^5.1.0",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
+  }
+}
