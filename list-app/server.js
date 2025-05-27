@@ -14,6 +14,7 @@ const bodyParser = require("body-parser")
 // create app object
 const app = express();
 
+// set up view engine
 app.set("views", path.join(__dirname));
 app.set("view engine", "ejs");
 
@@ -26,9 +27,13 @@ app.get("/", (req, res) => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// this handles storing a list item. 
 app.post("/submit", (req, res) => {
+    // we get the submitted text
     var inputText = req.body.newitem;
+    // call the add item function
     addItem(inputText);
+    // redisplay the html
     res.send(fs.readFileSync('items.html', {encoding: 'utf-8'}));
 })
 
@@ -39,7 +44,7 @@ app.listen(PORT, (error) => {
     console.log(`Server is running on http://localhost:${PORT}`)
 });
 
-
+// function to add new item to file
 function addItem(input) {
     fs.appendFile(path.join('files', 'items.csv'), input + ',', (error) => {if (error) throw error});
 }
