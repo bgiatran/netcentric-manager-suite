@@ -12,14 +12,18 @@ class MainHTTP {
     this.baseURL = baseURL;
   }
 
-  async request(method, endpoint, data = null, queryParams = {}) {
-      let url = this.baseURL + endpoint;
-
-    // Append query parameters
+  // Build full URL with query parameters
+  buildURL(endpoint, queryParams = {}) {
+    let url = this.baseURL + endpoint;
     if (Object.keys(queryParams).length) {
       const query = new URLSearchParams(queryParams).toString();
       url += `?${query}`;
     }
+    return url;
+  }
+
+  async request(method, endpoint, data = null, queryParams = {}) {
+    const url = this.buildURL(endpoint, queryParams);
 
     const options = {
       method: method.toUpperCase(),
@@ -28,27 +32,28 @@ class MainHTTP {
       },
     };
 
-     // Only attach a body if data exists and method is not GET
-    if (data && method !== "GET") {
+    if (data && method.toUpperCase() !== "GET") {
       options.body = JSON.stringify(data);
     }
 
     try {
       const response = await fetch(url, options);
-      const contentType = response.headers.get("content-type");
-        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
-      // Return parsed JSON or plain text based on response type
-      return contentType && contentType.includes("application/json")
-        ? await response.json()
-        : await response.text();
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status} ${response.statusText}`);
+      }
+
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        return await response.json();
+      } else {
+        return await response.text();
+      }
     } catch (error) {
-      // Return error message to display
       return { error: error.message };
     }
   }
 
-  // Helper methods for HTTP verbs
   get(endpoint, queryParams = {}) {
     return this.request("GET", endpoint, null, queryParams);
   }

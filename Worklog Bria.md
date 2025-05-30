@@ -1,5 +1,20 @@
-Project Log / Team Update:
-I finished writing the first version of the HTTP library and set up the basic project skeleton, including file structure, and basic utilities. I’ve shared the code with the team so everyone can add their input, revise parts as needed, and help polish and complete the implementation.
+# Project Log — Bria Tran
 
-Version Control / Commit Message:
-Initial commit of base HTTP. Uploaded to GitHub so teammates can collaborate on refining and finalizing the code.
+### 1. Initial Setup
+
+- Wrote the first version of the CoreHTTP library and set up the project skeleton (file structure, public folder, items.json).
+- Shared the initial version on GitHub for team collaboration.
+
+### 2. Server-Side Refinement
+
+- Converted server to use JSON storage and finalized API route structure.
+- Added complete error handling and refactored server.js for clarity and project requirements.
+
+### 3. Frontend Integration
+
+- Connected CoreHTTP and app.js to the server and API routes.
+- Implemented and tested GET, POST, DELETE, PUT, and PATCH functionality; fixed any incomplete or missing parts.
+
+### 4. UI/Styling
+
+- Centered and styled the UI to match the project example and standardized button styles.

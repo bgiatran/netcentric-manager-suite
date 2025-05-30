@@ -1,0 +1,123 @@
+/** Title: HTTP Library Project
+ *  Class: CSC3221 Group VI
+ *  Purpose: This stylesheet provides the visual styling for the List Manager
+ *  application. and error message presentation for the HTML interface
+ *  Authors: Bria Tran, Eva Espindola, Ryan Fecarotta
+ *  Date: May 30th, 2025
+ */
+
+/* Center everything in the viewport */
+body {
+    font-family: sans-serif;
+    background: #f4f4f4; /* Light background */
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Full page height */
+
+    /* Use Flexbox to center container horizontally and vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+}
+
+/* Main app container */
+.container {
+    background: white;
+    max-width: 500px;
+    width: 100%;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* subtle shadow */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* spacing between elements */
+    box-sizing: border-box;
+    transition: box-shadow 0.2s ease;
+}
+
+.container:hover {
+    cursor: pointer; /* Slight interactive feel when hovering over container */
+}
+
+/* Title styling */
+h1 {
+    text-align: center;
+    margin-top: 0;
+}
+
+/* Layout for input sections (Add, PUT, PATCH) */
+.input-section {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow wrap on smaller screens */
+}
+
+/* Input field styling for all inputs */
+input#item,
+input#put-index,
+input#put-value,
+input#patch-index,
+input#patch-value {
+    flex: 1;
+    min-width: 120px;
+    padding: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* Main action buttons (Add, PUT, PATCH) */
+button {
+    padding: 10px 15px;
+    background: #007BFF; /* Blue button */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer; /* Hand cursor */
+    transition: transform 0.1s ease;
+}
+
+button:hover {
+    cursor: pointer; /* Keep pointer on hover */
+    transform: scale(1.03); /* Slight zoom on hover */
+}
+
+/* Unordered list to display items */
+ul#list {
+    list-style-type: none; /* No bullets */
+    padding: 0;
+}
+
+/* Each list item (item + delete button) */
+ul#list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #eef; /* Light background */
+    margin-bottom: 5px;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+/* Delete button inside list item */
+ul#list li button {
+    background: red;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+ul#list li button:hover {
+    cursor: pointer;
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Error message styling */
+.error {
+    color: red;
+    margin-top: 10px;
+}

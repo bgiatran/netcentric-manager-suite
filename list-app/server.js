@@ -5,46 +5,111 @@
  *  Date: May 26th, 2025
  */
 
-// required modules
+// Import required modules
 const express = require('express');
-const fs = require('fs')
-const path = require('path')
-const bodyParser = require("body-parser")
-
-// create app object
+const fs = require('fs');
 const app = express();
+const path = require('path');
 
-// set up view engine
-app.set("views", path.join(__dirname));
-app.set("view engine", "ejs");
+// Path to the JSON file that stores the list of items
+const filePath = path.join(__dirname, 'items.json');
 
-// Get basic list page 
-app.get("/", (req, res) => {
-    res.send(fs.readFileSync('items.html', {encoding: 'utf-8'}));
+// Parse incoming JSON request bodies
+app.use(express.json());
+
+// Server static files from the 'public' folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Function: readItems()
+// Purpose: reads the items from items.json file
+const readItems = () => {
+    try {
+        return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+    } catch (err) {
+        return [];  // If file is empty or invalid
+    }
+};
+
+// GET all items
+app.get('/api/items', (req, res) => res.json(readItems()));
+
+// POST new item
+// Adds a new item to the list
+app.post('/api/items', (req, res) => {
+    const items = readItems();
+
+    // Validate input
+    if (!req.body.newitem || !req.body.newitem.trim()) {
+        return res.status(400).json({ error: 'Item cannot be empty' });
+    }
+
+    // Add newitem
+    items.push(req.body.newitem.trim());
+
+    // Save updated list to file
+    fs.writeFileSync(filePath, JSON.stringify(items, null, 2));
+    res.status(201).json({ success: true });
 });
 
-// body parser middleware. Sets it up to process text input from user
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+// DELETE item by index
+app.delete('/api/items/:index', (req, res) => {
+    const items = readItems();
+    const index = parseInt(req.params.index);
+    if (isNaN(index) || index < 0 || index >= items.length) {
+        return res.status(400).json({ error: 'Invalid index' });
+    }
 
-// this handles storing a list item. 
-app.post("/submit", (req, res) => {
-    // we get the submitted text
-    var inputText = req.body.newitem;
-    // call the add item function
-    addItem(inputText);
-    // redisplay the html
-    res.send(fs.readFileSync('items.html', {encoding: 'utf-8'}));
-})
+    // Remove item from array
+    const removed = items.splice(index, 1);
 
-// set port and start server
-const PORT = 3000
-app.listen(PORT, (error) => {
-    if (error) throw error;
-    console.log(`Server is running on http://localhost:${PORT}`)
+    // Save updated list
+    fs.writeFileSync(filePath, JSON.stringify(items, null, 2));
+    res.json({ success: true, removed });
 });
 
-// function to add new item to file
-function addItem(input) {
-    fs.appendFile(path.join('files', 'items.csv'), input + ',', (error) => {if (error) throw error});
-}
+// PUT (replace) item
+app.put('/api/items/:index', (req, res) => {
+    const items = readItems();
+    const index = parseInt(req.params.index);
+
+    // Validate index
+    if (isNaN(index) || index < 0 || index >= items.length) {
+        return res.status(400).json({ error: 'Invalid index' });
+    }
+
+    // Validate new value
+    if (!req.body.newitem || !req.body.newitem.trim()) {
+        return res.status(400).json({ error: 'New value cannot be empty' });
+    }
+
+    // Replace item
+    items[index] = req.body.newitem.trim();
+    fs.writeFileSync(filePath, JSON.stringify(items, null, 2));
+    res.json({ success: true });
+});
+
+// PATCH (partial update) — for demo we'll append text
+app.patch('/api/items/:index', (req, res) => {
+    const items = readItems();
+    const index = parseInt(req.params.index);
+
+    // Validate index
+    if (isNaN(index) || index < 0 || index >= items.length) {
+        return res.status(400).json({ error: 'Invalid index' });
+    }
+
+    // Append patch value to existing item
+    if (!req.body.patchvalue || !req.body.patchvalue.trim()) {
+        return res.status(400).json({ error: 'Patch value cannot be empty' });
+    }
+
+    // Append patch value to existing item
+    items[index] += ` ${req.body.patchvalue.trim()}`;
+    fs.writeFileSync(filePath, JSON.stringify(items, null, 2));
+    res.json({ success: true });
+});
+
+
+// Start the server on port 3000
+const PORT = 3000;
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

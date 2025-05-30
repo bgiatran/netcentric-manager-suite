@@ -1,0 +1,56 @@
+<!-- Title: List Manager Project
+     Class: CSC3221 Group VI
+     Purpose: This is the user interface for the List
+     Manager application. It allows users to view, add,
+     edit, and remove items from a persistent list.
+     Authors: Bria Tran, Eva Espindola, Ryan Fecarotta
+     Date: May 24th, 2025
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Item List Manager</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Main container for the entire application -->
+<div class="container">
+  <h1>Item List Manager</h1>
+
+  <!-- App instructions -->
+  <p>Enter an item below and click "Add" to add it to your list. Click "Delete" to remove an item.</p>
+
+  <!-- Section: Add new item -->
+  <div class="input-section">
+    <input id="item" placeholder="Enter item name">
+    <button onclick="addItem()">Add</button>
+  </div>
+
+  <ul id="list"></ul>
+
+  <!-- Section: Edit or PUT existing item -->
+  <h3>Edit Item (PUT)</h3>
+  <div class="input-section">
+    <input id="put-index" type="number" placeholder="Index to edit">
+    <input id="put-value" placeholder="New value">
+    <button onclick="putItem()">Edit (PUT)</button>
+  </div>
+
+
+  <!-- Section: Patch existing item -->
+  <h3>Patch Item (PATCH)</h3>
+  <div class="input-section">
+    <input id="patch-index" type="number" placeholder="Index to patch">
+    <input id="patch-value" placeholder="Patch text to add">
+    <button onclick="patchItem()">Patch (PATCH)</button>
+  </div>
+
+  <div id="error-message" class="error"></div>
+</div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
