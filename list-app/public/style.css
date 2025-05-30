@@ -34,6 +34,8 @@ body {
     gap: 20px; /* spacing between elements */
     box-sizing: border-box;
     transition: box-shadow 0.2s ease;
+    overflow: auto;
+    height: 100%;
 }
 
 .container:hover {
