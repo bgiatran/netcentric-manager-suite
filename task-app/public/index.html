@@ -1,0 +1,37 @@
+<!-- Title: Task Manager Project
+     Class: CSC3221 Group VI
+     Purpose: This file defines the main user interface for 
+     the Task Manager web application.
+     It provides the structure for displaying and managing tasks, 
+     including input for new tasks
+     and a dynamic list of existing tasks.
+     Authors: Bria Tran, Eva Espindola, Ryan Fecarotta
+     Date: June 2, 2025
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Task Manager</h1>
+
+    <!-- Task Creation Form -->
+    <form id="task-form">
+      <input type="text" id="task-input" placeholder="Enter a new task..." required />
+      <button type="submit">Add Task</button>
+    </form>
+
+    <!-- Task List -->
+    <ul id="task-list"></ul>
+  </div>
+
+  <script src="mainHTTP.js"></script>
+  <script src="taskApp.js"></script>
+</body>
+</html>
