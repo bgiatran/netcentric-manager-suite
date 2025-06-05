@@ -16,7 +16,7 @@
 
 ## How to Run
 
-1Start the server:
+Start the server:
 
 ```bash
 node server.js
