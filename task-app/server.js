@@ -18,7 +18,7 @@ const app = express();
 const PORT = 3000;
 
 // Middleware
-app.use(cors()); // Allow cross-origin requests (needed for frontend to talk to backend)
+app.use(cors()); // Needed for frontend to talk to backend
 app.use(express.json()); // Automatically parse JSON in requests
 app.use(express.static('public')); // Serve static files from 'public' folder
 
@@ -48,7 +48,7 @@ app.post('/tasks', async (req, res) => {
     try {
         // Create new Task object with text from request body
         const newTask = new Task({ text: req.body.text });
-        await newTask.save(); // Save new task to database
+        await newTask.save();
         console.log('Task saved:', newTask);
         res.json({ task: newTask }); // Send new task back as JSON
     } catch (err) {
@@ -62,7 +62,7 @@ app.put('/tasks/:id', async (req, res) => {
     try {
         const updatedTask = await Task.findByIdAndUpdate(
             req.params.id, // find by ID
-            { text: req.body.text, completed: req.body.completed }, // update fields
+            { text: req.body.text, completed: req.body.completed },
             { new: true } // return the updated document
         );
         res.json({ task: updatedTask });

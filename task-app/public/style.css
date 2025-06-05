@@ -174,7 +174,6 @@ h1, h2, h3, h4 {
 }
 
 .add-btn:hover {
-    /* Button hover effect */
     background-color: #2980b9;
 }
 
@@ -235,7 +234,7 @@ h1, h2, h3, h4 {
     color: #555;
 }
 
-/* Error message (optional - if shown on page) */
+/* Error message (optional) */
 .error-message {
     color: red;
     font-weight: bold;

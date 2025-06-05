@@ -190,7 +190,7 @@ function renderKanbanCard(task) {
     }
 }
 
-// Toggles whether a task is completed
+// Toggles whether a task is completed or not
 async function toggleComplete(task) {
     try {
         const updated = await api.put(`/tasks/${task._id}`, {
@@ -240,7 +240,7 @@ function updateProgress() {
     taskSummary.textContent = `You have ${tasks.length} tasks (${completed} completed).`;
 }
 
-// Extracts the priority from the task text
+// Extracts the priority type from the task text
 function extractPriority(text) {
     if (text.includes("[High]")) return "High";
     if (text.includes("[Medium]")) return "Medium";
@@ -261,5 +261,4 @@ function priorityColor(priority) {
 // Displays an error message in the console (could also show on screen if needed)
 function showError(message) {
     console.error(message);
-    // Optionally display in UI if needed
 }
