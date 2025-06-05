@@ -18,3 +18,4 @@
 ### 4. UI/Styling
 
 - Centered and styled the UI to match the project example and standardized button styles.
+- Connected the app to the MongoDB Atlas database and worked on the styling and layout of the user interface.

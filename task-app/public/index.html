@@ -1,0 +1,109 @@
+<!-- Title: Task Manager Project
+     Class: CSC3221 Group VI
+     Purpose: This file defines the main user interface for
+     the Task Manager web application.
+     It provides the structure for displaying and managing tasks,
+     including input for new tasks
+     and a dynamic list of existing tasks.
+     Authors: Bria Tran, Eva Espindola, Ryan Fecarotta
+     Date: June 2, 2025
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- App Header -->
+<header class="navbar">
+    <div class="app-logo">Task Manager</div>
+</header>
+
+<!-- Main Content -->
+<main class="main-content">
+
+    <!-- Tabs + Progress Row -->
+    <div class="tabs-row">
+        <!-- View Selection Tabs -->
+        <div class="tabs">
+            <button id="tab-list" class="tab-button active">List View</button>
+            <button id="tab-kanban" class="tab-button">Kanban Board</button>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-inline">
+            <span>Progress: <span id="progress-percent">0%</span></span>
+            <div class="progress-bar small">
+                <div id="progress-bar-fill" class="progress-bar-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- List View Section -->
+    <section id="list-view" class="tab-content active">
+        <!-- Summary of total tasks and completed count -->
+        <p id="task-summary" style="margin-bottom: 10px; font-weight: bold;">You have 0 tasks (0 completed).</p>
+
+        <!-- Task Table for displaying tasks -->
+        <table class="task-table">
+            <thead>
+            <tr>
+                <th>Completed</th>
+                <th>Task Name</th>
+                <th>Priority</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody id="task-table-body">
+            <!-- Tasks will be inserted here -->
+            </tbody>
+        </table>
+
+        <!-- Add Task -->
+        <form id="task-form" class="add-task-form">
+            <input type="text" id="task-input" placeholder="Enter a new task..." required />
+
+            <!-- Priority selection dropdown -->
+            <select id="priority-select">
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+            </select>
+
+            <!-- Submit button to add the task -->
+            <button type="submit" class="add-btn">Add Task</button>
+        </form>
+    </section>
+
+    <!-- Kanban Board -->
+    <section id="kanban-board" class="tab-content">
+
+        <!-- To Do Column -->
+        <div class="kanban-column" data-status="todo">
+            <h4>To Do</h4>
+            <div class="kanban-tasks" id="todo-tasks"></div>
+        </div>
+
+        <!-- In Progress Column -->
+        <div class="kanban-column" data-status="inprogress">
+            <h4>In Progress</h4>
+            <div class="kanban-tasks" id="inprogress-tasks"></div>
+        </div>
+
+        <!-- Done Column -->
+        <div class="kanban-column" data-status="done">
+            <h4>Done</h4>
+            <div class="kanban-tasks" id="done-tasks"></div>
+        </div>
+    </section>
+</main>
+
+<!-- Load app logic -->
+<script type="module" src="app.js"></script>
+</body>
+</html>
